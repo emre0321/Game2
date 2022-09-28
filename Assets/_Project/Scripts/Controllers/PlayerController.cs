@@ -38,6 +38,8 @@ public class PlayerController : ControllerBaseModel
                 Player.ChangeAnimation(AnimationNames.Idle);
                 break;
             case GameStates.Gameplay:
+                Player.Die(false);
+                Player.transform.position = LevelController.Instance.CurrentLevel.StaticPlatforms[0].transform.position + new Vector3(0, 0.5f, 0);
                 LevelController.Instance.SetPlayerTargetPlatform(LevelController.Instance.CurrentLevel.StaticPlatforms[0]);
                 Player.ChangeAnimation(AnimationNames.Run);
                 break;

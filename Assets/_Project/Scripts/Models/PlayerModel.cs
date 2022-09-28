@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerModel : ObjectModel
+public class PlayerModel : ObjectModel 
 {
-
     [SerializeField] Rigidbody PlayerRb;
 
 
@@ -20,7 +19,6 @@ public class PlayerModel : ObjectModel
             return;
         PlayerAC.SetBool(CurrentAnimation.ToString(), false);
         PlayerAC.SetBool(animationName.ToString(), true);
-
 
         CurrentAnimation = animationName;
     }
@@ -44,4 +42,5 @@ public class PlayerModel : ObjectModel
             PlayerRb.isKinematic = true;
         }
     }
+
 }

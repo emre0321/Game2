@@ -22,7 +22,7 @@ public class PlatformModel : ObjectModel
 
     public void ResetPlatform()
     {
-        MovementType = PlatformMovementType.None;
+        //MovementType = PlatformMovementType.None;
         transform.eulerAngles = Vector3.zero;
         transform.localScale = DefaultScaleValue;
         IsReferancePlatform = false;

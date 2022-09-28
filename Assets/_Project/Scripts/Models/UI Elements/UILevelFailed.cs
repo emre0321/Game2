@@ -6,6 +6,7 @@ public class UILevelFailed : UIElementModel
 {
     public void SetRetryButton()
     {
-
+        GameController.ChangeGameState(GameStates.Gameplay);
+        LevelController.Instance.RetryLevel();
     }
 }

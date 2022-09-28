@@ -41,6 +41,8 @@ public class LevelController : ControllerBaseModel
     public void NextLevel()
     {
         LevelIndex++;
+        if (LevelIndex == Levels.Count)
+            LevelIndex = 0;
         float tempZOffset = CurrentLevel.NextLevelZOffset;
 
         GenerateLevel(Levels[LevelIndex], tempZOffset);
@@ -48,7 +50,9 @@ public class LevelController : ControllerBaseModel
 
     public void RetryLevel()
     {
+        float tempZOffset = CurrentLevel.NextLevelZOffset;
 
+        GenerateLevel(Levels[LevelIndex], tempZOffset);
     }
 
    
@@ -74,6 +78,7 @@ public class LevelController : ControllerBaseModel
         PlatformModel tempFinishPlatform = FinishPlatformPool.GetDeactiveItem<PlatformModel>();
         tempFinishPlatform.transform.position = new Vector3(0, 0.5f, (((level.StaticPlatformCount + level.NumberOfCuts) * PlatformsZOffset) - 0.5f) + zOffset);
         tempFinishPlatform.SetActive();
+        CurrentLevel.GeneratedPlatforms.Add(tempFinishPlatform);
 
         //// PLAYER POSITION SETLEME
         //playerController.SetPlayerPosition(CurrentLevel.StaticPlatforms[0].transform.position + new Vector3(0, 0.5f, 0));
@@ -187,6 +192,8 @@ public class LevelController : ControllerBaseModel
         }
 
 
+        CurrentLevel.GeneratedPlatforms.Add(newReferancePlatform);
+        CurrentLevel.GeneratedPlatforms.Add(dropPlatform);
 
         newReferancePlatform.IsReferancePlatform = true;
         ReferancePlatform = newReferancePlatform;

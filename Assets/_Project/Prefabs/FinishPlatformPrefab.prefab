@@ -95,12 +95,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffdff9dbcc137b442b75327a3e9f9ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  INDEX: 0
   MovementType: 4
+  IsLastPlatform: 0
   IsReferancePlatform: 0
   IsPlatformMoving: 0
   IsPlatformThin: 0
+  MainCollider: {fileID: 7044606242385152656}
   PlatformMovementSpeed: 0
-  DefaultScaleValue: {x: 0, y: 0, z: 0}
+  DefaultScaleValue: {x: 1, y: 1, z: 1}
   PlatformRb: {fileID: 0}
 --- !u!65 &7044606242385152656
 BoxCollider:
