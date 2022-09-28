@@ -11,6 +11,6 @@ public enum ControllerTypes { None, GameController, LevelController}
 
 public enum SoundIDs { None, NoteSound}
 
-public enum PlatformType { None, Default, Finish}
+public enum PlatformMovementType { None, Static, Left, Right, Finish}
 
-public enum PlatformMovementType { None, Left, Right}
+public enum AnimationNames { None, Idle, Dance, Run}

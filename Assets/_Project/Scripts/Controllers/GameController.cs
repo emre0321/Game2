@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameController : ControllerBaseModel
 {
     public static GameController Instance;
-    public static GameStates CurrentGameState;
+    public GameStates CurrentGameState;
 
     public List<ControllerBaseModel> Controllers;
 
@@ -33,8 +33,18 @@ public class GameController : ControllerBaseModel
     {
         for (int i = 0; i < Controllers.Count; i++)
         {
-            Controllers[i].ControllerUpdate();
+            Controllers[i].ControllerUpdate(CurrentGameState);
         }
 
+    }
+
+    public static void ChangeGameState(GameStates gameState)
+    {
+        Instance.CurrentGameState = gameState;
+
+        for (int i = 0; i < Instance.Controllers.Count; i++)
+        {
+            Instance.Controllers[i].OnGameStateChange(Instance.CurrentGameState);
+        }
     }
 }

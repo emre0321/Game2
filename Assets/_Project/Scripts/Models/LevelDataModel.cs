@@ -6,16 +6,18 @@ using System;
 [Serializable]
 public class LevelDataModel
 {
-    public List<PlatformMovementType> MoveablePlatformCount;
-    public List<PlatformModel> GeneratedPlatforms;
+    public int StaticPlatformCount;
+    public int NumberOfCuts;
+
+    public List<PlatformModel> StaticPlatforms;
+    public float NextLevelZOffset;
 
     public void Reset()
     {
-        for (int i = 0; i < GeneratedPlatforms.Count; i++)
+        for (int i = 0; i < StaticPlatforms.Count; i++)
         {
-            GeneratedPlatforms[i].ResetPlatform();
-            GeneratedPlatforms[i].SetDeactive();
+            StaticPlatforms[i].ResetPlatform();
         }
     }
-
+  
 }

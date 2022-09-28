@@ -6,7 +6,7 @@ public class InputController : ControllerBaseModel
 {
     [SerializeField] PointerController pointerController;
 
-    public override void ControllerUpdate()
+    public override void ControllerUpdate(GameStates gameState)
     {
         pointerController.ControllerUpdate();
     }

@@ -24,6 +24,8 @@ public class PoolModel : ObjectModel
             createdPoolElement.transform.SetParent(this.transform);
             PoolElements.Add(createdPoolElement.GetComponent<ObjectModel>());
             createdPoolElement.gameObject.SetActive(false);
+
+            createdPoolElement.GetComponent<PlatformModel>().INDEX = i;
         }
     }
 
