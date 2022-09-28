@@ -5,11 +5,33 @@ using UnityEngine;
 public class SoundController : ControllerBaseModel
 {
     [SerializeField] List<SoundDataModel> Sounds;
+    [SerializeField] NoteSoundDataModel NoteSoundData;
     [SerializeField] AudioSource audioSource;
 
-    private void Awake()
+    public override void Initialize()
     {
         SetAudio(SoundIDs.NoteSound);
+    }
+
+
+    public void PlayCurrentAudio(bool isCombo)
+    {
+        if (isCombo)
+        {
+            NoteSoundData.CurrentPitchValue = NoteSoundData.DefaultPitchValue;
+            NoteSoundData.PitchComboCounter++;
+            NoteSoundData.CurrentPitchValue += NoteSoundData.PitchComboCounter * NoteSoundData.IncreaseValue;
+            audioSource.pitch = NoteSoundData.CurrentPitchValue;
+        }
+        else
+        {
+            NoteSoundData.CurrentPitchValue = NoteSoundData.DefaultPitchValue;
+            NoteSoundData.PitchComboCounter = 0;
+            audioSource.pitch = NoteSoundData.CurrentPitchValue;
+        }
+
+        audioSource.Play();
+
     }
 
     public void SetAudio(SoundIDs soundIDs)

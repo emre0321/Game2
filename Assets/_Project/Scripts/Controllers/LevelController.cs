@@ -141,11 +141,12 @@ public class LevelController : ControllerBaseModel
 
         if (IsPerfect(ReferancePlatform, MovingPlatform))
         {
-
+            GameController.Instance.GetController<SoundController>().PlayCurrentAudio(true);
             Debug.Log("PERFECT !");
         }
         else
         {
+            GameController.Instance.GetController<SoundController>().PlayCurrentAudio(false);
             Debug.Log("NOT PERfect");
 
         }

@@ -31,3 +31,16 @@ public class SoundDataModel
     public float ReverbZoneMix;
 }
 
+[Serializable]
+public class NoteSoundDataModel
+{
+    [Header("SESIN ORJINAL PITCH VALUE'SU")]
+    public int DefaultPitchValue;
+    [Header("SESIN SU ANKI PITCH VALUE'SU")]
+    public float CurrentPitchValue;
+    [Header("PITCH VALUE KAC KAC ARTSIN")]
+    public float IncreaseValue;
+    [Header("SU AN KAC KATI")]
+    public int PitchComboCounter;
+}
+

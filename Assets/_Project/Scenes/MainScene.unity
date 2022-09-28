@@ -2331,6 +2331,11 @@ MonoBehaviour:
     StereoPan: 0
     SpatialBlend: 0
     ReverbZoneMix: 1
+  NoteSoundData:
+    DefaultPitchValue: 1
+    CurrentPitchValue: 0
+    IncreaseValue: 0.07
+    PitchComboCounter: 0
   audioSource: {fileID: 2095970240}
 --- !u!82 &2095970240
 AudioSource:
