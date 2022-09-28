@@ -68,7 +68,7 @@ public class CameraController : ControllerBaseModel
                 tempOrbital.m_XAxis.m_InputAxisValue = OrbitalCameraSpeed;
                 tempOrbital.m_XDamping = 0;
                 break;
-         
+
         }
     }
 

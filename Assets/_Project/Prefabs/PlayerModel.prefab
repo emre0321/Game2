@@ -638,7 +638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerRb: {fileID: 2029946723874121790}
-  PlayerAC: {fileID: 0}
+  PlayerAC: {fileID: 1062011948917196078}
   CurrentAnimation: 0
 --- !u!1 &6757846885105924857
 GameObject:

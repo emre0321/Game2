@@ -5,10 +5,8 @@ using UnityEngine;
 public class PlayerController : ControllerBaseModel
 {
     public PlayerModel Player;
-    [Header("TARGET PLATFORM")]
-    public PlatformModel TargetPlatform;
+    [HideInInspector] public PlatformModel TargetPlatform;
     [Header("MOVEMENT")]
-    [SerializeField] Vector3 PlayerStartPos;
     [SerializeField] float ForwardSpeed;
     [SerializeField] float SideSpeed;
 
@@ -24,6 +22,7 @@ public class PlayerController : ControllerBaseModel
                 PlayerMovement();
                 break;
             case GameStates.LevelSuccess:
+
                 break;
             case GameStates.LevelFail:
                 break;
@@ -39,8 +38,6 @@ public class PlayerController : ControllerBaseModel
                 break;
             case GameStates.Gameplay:
                 Player.Die(false);
-                Player.transform.position = LevelController.Instance.CurrentLevel.StaticPlatforms[0].transform.position + new Vector3(0, 0.5f, 0);
-                LevelController.Instance.SetPlayerTargetPlatform(LevelController.Instance.CurrentLevel.StaticPlatforms[0]);
                 Player.ChangeAnimation(AnimationNames.Run);
                 break;
             case GameStates.LevelSuccess:
@@ -69,5 +66,11 @@ public class PlayerController : ControllerBaseModel
     public void SetPlayerPosition(Vector3 pos)
     {
         Player.transform.position = pos;
+    }
+
+    public void PlayerPrepare()
+    {
+        Player.transform.position = LevelController.Instance.CurrentLevel.StaticPlatforms[0].transform.position + new Vector3(0, 0.5f, 0);
+        LevelController.Instance.SetPlayerTargetPlatform(LevelController.Instance.CurrentLevel.StaticPlatforms[0]);
     }
 }

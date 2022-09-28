@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlatformModel : ObjectModel
 {
-    public int INDEX;
-
-
     public PlatformMovementType MovementType;
     public bool IsLastPlatform;
     public bool IsReferancePlatform;
@@ -31,6 +28,7 @@ public class PlatformModel : ObjectModel
         IsLastPlatform = false;
         CollisionLimitor = false;
         MainCollider.enabled = true;
+
     }
 
 
@@ -95,7 +93,6 @@ public class PlatformModel : ObjectModel
 
             if (IsReferancePlatform && !IsLastPlatform && IsPlatformThin == false)
             {
-                Debug.Log("GENERATE PLATFORM WITH = " +  INDEX);
                 LevelController.Instance.GenerateMovingPlatform();
             }
 

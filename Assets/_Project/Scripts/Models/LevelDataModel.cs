@@ -27,6 +27,9 @@ public class LevelDataModel
             GeneratedPlatforms[i].SetDeactive();
         }
 
+        StaticPlatforms.Clear();
+        GeneratedPlatforms.Clear();
+
     }
 
 }

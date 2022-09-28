@@ -11,7 +11,6 @@ public class LevelController : ControllerBaseModel
 
     [Header("GECICI OLARAK LEVEL INDEX")]
     public int LevelIndex;
-    public int FakeLevelIndex;
 
     [Header("PLATFORMS OFFSET VALUES")]
     [SerializeField] float MovingPlatformXOffset;
@@ -22,6 +21,7 @@ public class LevelController : ControllerBaseModel
     [Header("PLATFORM POOL")]
     [SerializeField] PoolModel PlatformPool;
     [SerializeField] PoolModel FinishPlatformPool;
+    [SerializeField] ObjectModel FakeFinishPlatform;
 
     [Header("PLAYER CONTROLLER")]
     [SerializeField] PlayerController playerController;
@@ -44,20 +44,21 @@ public class LevelController : ControllerBaseModel
         if (LevelIndex == Levels.Count)
             LevelIndex = 0;
         float tempZOffset = CurrentLevel.NextLevelZOffset;
-
+        // FAKE FINISH PLATFORM
+        FakeFinishPlatform.SetActive();
+        FakeFinishPlatform.transform.position = CurrentLevel.GeneratedPlatforms[0].transform.position;
         GenerateLevel(Levels[LevelIndex], tempZOffset);
     }
 
     public void RetryLevel()
     {
         float tempZOffset = CurrentLevel.NextLevelZOffset;
-
         GenerateLevel(Levels[LevelIndex], tempZOffset);
     }
 
-   
 
-    public void GenerateLevel(LevelDataModel level , float zOffset)
+
+    public void GenerateLevel(LevelDataModel level, float zOffset)
     {
         if (CurrentLevel != null)
             CurrentLevel.Reset();
@@ -70,7 +71,7 @@ public class LevelController : ControllerBaseModel
         {
             PlatformModel tempPlatform = PlatformPool.GetDeactiveItem<PlatformModel>();
             tempPlatform.SetActive();
-            tempPlatform.transform.position = new Vector3(0, 0, (i * PlatformsZOffset)+ zOffset);
+            tempPlatform.transform.position = new Vector3(0, 0, (i * PlatformsZOffset) + zOffset);
             CurrentLevel.StaticPlatforms.Add(tempPlatform);
         }
 
@@ -80,13 +81,14 @@ public class LevelController : ControllerBaseModel
         tempFinishPlatform.SetActive();
         CurrentLevel.GeneratedPlatforms.Add(tempFinishPlatform);
 
-        //// PLAYER POSITION SETLEME
-        //playerController.SetPlayerPosition(CurrentLevel.StaticPlatforms[0].transform.position + new Vector3(0, 0.5f, 0));
 
         CurrentLevel.NextLevelZOffset = tempFinishPlatform.transform.position.z + 2.5f;
-
         CurrentLevel.StaticPlatforms[CurrentLevel.StaticPlatforms.Count - 1].IsReferancePlatform = true;
         ReferancePlatform = CurrentLevel.StaticPlatforms[CurrentLevel.StaticPlatforms.Count - 1];
+
+        // PLAYER POZISYON SETLEME
+        playerController.PlayerPrepare();
+
     }
 
 
@@ -231,7 +233,7 @@ public class LevelController : ControllerBaseModel
     {
         playerController.TargetPlatform = platform;
 
-        if(platform.MovementType == PlatformMovementType.Finish)
+        if (platform.MovementType == PlatformMovementType.Finish)
         {
             playerController.SetPlayerPosition(platform.transform.position);
             GameController.ChangeGameState(GameStates.LevelSuccess);
